@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.Anchor {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 99px;
+  font-size: 1rem;
+  font-weight: 800;
+  background-color: #1db954;
+}
+
+.Logo {
+  width: 85%;
+}
+
+@media (min-width: 700px) {
+  .Anchor {
+    font-size: 1.25rem;
+  }
+  .Logo {
+    width: 50%;
+  }
+}
+/*# sourceMappingURL=App.module.css.map */

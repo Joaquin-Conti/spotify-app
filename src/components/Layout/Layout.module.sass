@@ -1,0 +1,45 @@
+.ContainerAbsolute
+  display: flex
+  flex-flow: column
+  justify-content: space-between
+  align-items: center
+  margin: auto 0
+  position: absolute
+  left: 50%
+  top: 35%
+  transform: translate(-50%, -50%)
+  width: 100%
+  height: 40%
+
+.Container
+  background-color: black
+  display: flex
+  flex-flow: column
+  justify-content: space-between
+  align-items: center
+  margin: auto 0
+  width: 100%
+  height: 100%
+  > button, #Loader
+    margin: 5% 0
+.Logo
+  width: 85%
+
+.Anchor
+  color: white
+  text-decoration: none
+  padding: 20px
+  border-radius: 99px
+    // border: 1px solid white
+  font-size: 1rem
+  font-weight: 800
+  background-color: black
+
+@media (min-width: 700px)
+  .Container
+    > button, #Loader
+      margin: 2% 0
+    .Logo
+      width: 50%
+  .Anchor
+    font-size: 1.25rem
