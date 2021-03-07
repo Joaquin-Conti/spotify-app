@@ -1,3 +1,5 @@
+import { createSagaAction } from '../sagas/helper';
+
 export enum ActionType {
   //LOGIN
   USER_AUTHORIZED = 'USER_AUTHORIZED',
@@ -11,4 +13,12 @@ export enum ActionType {
 
   //UI
   TOGGLE_LOADING = 'TOGGLE_LOADING',
+
+}
+
+export const constants = {
+  POST_TEST: createSagaAction('POST_TEST'),
+  PUT_TEST: createSagaAction('PUT_TEST'),
+  GET_TEST: createSagaAction('GET_TEST'),
+  DELETE_TEST: createSagaAction('DELETE_TEST')
 }

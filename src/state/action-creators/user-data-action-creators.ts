@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Action } from './../actions/actions';
 import { Dispatch } from 'redux';
 import { axiosGetTopArtistsConfig, API_URL } from '../../api/index';
-import { ActionType } from './../action-types/action-types';
+import { ActionType, constants } from './../action-types/action-types';
 
 interface UserInputSelect {
   type: string
@@ -57,4 +57,12 @@ export const userInputSelected = (userInputSelect: UserInputSelect) => {
     //   })
     //   console.log(err)
     // }
+} 
+
+
+// ELIMINAR
+export const testAction = () => {
+  return {
+      type: constants.POST_TEST.REQUEST
+  }
 } 
