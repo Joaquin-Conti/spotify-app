@@ -6,7 +6,6 @@ interface Props {
 }
 
 const Backdrop: React.FC<Props> = (props) => {
-    console.log(props.children)
     return (
         props.show ?
         <div className={css.Backdrop}>

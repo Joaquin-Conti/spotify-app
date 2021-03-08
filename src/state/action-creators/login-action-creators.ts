@@ -1,4 +1,3 @@
-import { toggleLoading } from './ui-action.creators';
 import axios from 'axios';
 import { Dispatch } from 'react';
 import { axiosTokenReqConfig, data as reqData, TOKEN_ENDPOINT } from '../../api';
@@ -23,7 +22,7 @@ export const authCodeObtained = (authCode: string) => {
 
 export const getAccessToken = () => {
   return async (dispatch: Dispatch<Action>) => {
-    console.log("[Access Token]")
+    console.log("[Access Token] fetching")
     try {
       const { data } = await axios.post(TOKEN_ENDPOINT, reqData ,axiosTokenReqConfig)
       dispatch({

@@ -7,7 +7,7 @@ const UserTopData: React.FC = () => {
   const { userTopData, userInputSelect } = useTypedSelector(state => state.userData)
 
   useEffect(() => {
-      console.log('[UserTopData] rendering')
+      // console.log('[UserTopData] rendering')
   })
 
 return (

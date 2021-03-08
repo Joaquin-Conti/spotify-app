@@ -1,4 +1,4 @@
-import { ActionType } from './../action-types/action-types';
+import { ActionType } from '../action-types/action-types';
 
 export const toggleLoading = (loading: boolean) => {
   return {

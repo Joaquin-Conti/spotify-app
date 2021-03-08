@@ -1,6 +1,11 @@
 import { rootReducer, RootState } from './state/reducers/rootReducer';
 import { applyMiddleware, compose, createStore, Middleware } from "redux";
+import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk';
+
+
+const sagaMiddleware = createSagaMiddleware()
+
 
 declare global {
     interface Window {
@@ -20,5 +25,8 @@ export const logger:
 export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
+
+
+// sagaMiddleware.run(mySaga)
 
 // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
