@@ -1,7 +1,8 @@
 import { rootReducer, RootState } from './state/reducers/rootReducer';
 import { applyMiddleware, compose, createStore, Middleware } from "redux";
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
+import rootSaga from './state/sagas';
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -24,7 +25,10 @@ export const logger:
 
 export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk),applyMiddleware(sagaMiddleware)));
+
+// Run the saga now
+sagaMiddleware.run(rootSaga);
 
 
 // sagaMiddleware.run(mySaga)

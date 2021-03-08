@@ -7,6 +7,11 @@ import { useLoginActions, useUIDataActions, useUserDataActions } from '../../hoo
 import getParams from '../../helpers/getParams'
 import Main from '../Main/Main'
 import { loginUri } from '../../api'
+import { Button } from 'react-bootstrap'
+
+// ELIMINAR
+import { useDispatch } from 'react-redux';
+import { testAction } from '../../state/action-creators/user-data-action-creators';
 
 const Layout: React.FC = () => {
   const { isLoggedIn, accessToken } = useTypedSelector(state => state.login)
@@ -19,6 +24,8 @@ const Layout: React.FC = () => {
 
   const firstUpdate = useRef(true);
   
+  // ELIMINAR
+  const dispatch = useDispatch();
 
   // TO CHECK *WHEN* THE CODE IS OBTAINED
   useEffect(() => {
@@ -49,6 +56,7 @@ const Layout: React.FC = () => {
       </main> :
 
       <a className={css.Anchor} href={loginUri}>LOG IN WITH SPOTIFY</a>}
+      <Button onClick={() => dispatch(testAction())}>Jeje mira este llama a la saga</Button>
     </React.Fragment>
   )
 }
