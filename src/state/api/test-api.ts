@@ -1,6 +1,4 @@
-
-import qs from 'qs';
-
+import qs from 'qs'
 
 const _makeRequest = async (path = "aca pones ej /song/isjd1941", options: any, baseUrl = "aca metes la url de spotify") => {
 
@@ -11,14 +9,13 @@ const _makeRequest = async (path = "aca pones ej /song/isjd1941", options: any, 
     const requestUrl = `${baseUrl}/api/${path}`;
   
     let response = await fetch(requestUrl, opts);
-  
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
 
     return response;
-  };
+};
   
   function getPayload(options: any) {
     // Stringify body option for fetch()

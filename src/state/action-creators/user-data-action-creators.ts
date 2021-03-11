@@ -48,15 +48,6 @@ export const userInputSelected = (userInputSelect: UserInputSelect) => {
       type: ActionType.USER_INPUT_SELECTED,
       payload: userInputSelect
   }
-    // try {
-    //   getUserTopData(userInputSelect)
-    // } catch (err) {
-    //   dispatch({
-    //     type: ActionType.TOGGLE_LOADING,
-    //     payload: false
-    //   })
-    //   console.log(err)
-    // }
 } 
 
 
