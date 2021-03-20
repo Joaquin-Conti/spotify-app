@@ -10,7 +10,7 @@ store.subscribe(() => {
 // ENDPOINTS
 export const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 export const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
-export const REDIRECT_URI = 'http://localhost:3000/'
+export const REDIRECT_URI = 'https://joaquinconti.github.io/spotify-app/'
 export const API_URL = 'https://api.spotify.com/v1'
 
 // APP 
