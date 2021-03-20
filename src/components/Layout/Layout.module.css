@@ -70,9 +70,11 @@
   }
   .Container .Logo {
     width: 50%;
+    margin: 3% 0;
   }
   .Anchor {
     font-size: 1.25rem;
+    margin: 15% 0;
   }
 }
 /*# sourceMappingURL=Layout.module.css.map */
