@@ -13,8 +13,8 @@ export const getUserTopData = (userInputSelect: UserInputSelect) => {
   const { type, timeTerm } = userInputSelect
   return async (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: ActionType.USER_INPUT_SELECTED,
-      payload: userInputSelect
+      type: ActionType.ERROR,
+      payload: null
     })
     console.log('[getUserTopData]', userInputSelect)
     dispatch({
@@ -22,6 +22,10 @@ export const getUserTopData = (userInputSelect: UserInputSelect) => {
       payload: true
     })
     try {
+      dispatch({
+        type: ActionType.USER_TOP_DATA_OBTAINED,
+        payload: []
+      })
       console.log("[getUserTopData] fetching")
       const { data } = await axios.get(`${API_URL}/me/top/${type}?time_range=${timeTerm}`, axiosGetTopArtistsConfig)
       console.log('[ActionCreator]', data)
@@ -39,14 +43,36 @@ export const getUserTopData = (userInputSelect: UserInputSelect) => {
         payload: false
       })
       console.log(error.response)
+      dispatch({
+        type: ActionType.ERROR,
+        payload: 'Something went wrong. Try re-logging in.'
+      })
     }
   }  
 }
 
 export const userInputSelected = (userInputSelect: UserInputSelect) => {
-  return {
-      type: ActionType.USER_INPUT_SELECTED,
-      payload: userInputSelect
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.ERROR,
+      payload: null
+    })
+    dispatch({
+      type: ActionType.USER_TOP_DATA_OBTAINED,
+      payload: []
+    })
+    try {
+        dispatch({
+          type: ActionType.USER_INPUT_SELECTED,
+          payload: userInputSelect
+        })
+    } catch (error) {
+      console.log(error.response)
+      dispatch({
+        type: ActionType.ERROR,
+        payload: 'Something went wrong. Try re-logging in.'
+      })
+    }
   }
 } 
 

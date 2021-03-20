@@ -1,63 +1,66 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import css from './Layout.module.css'
 import { useTypedSelector, } from '../../hooks/useTypedSelector'
+import logo from "../../assets/logos/01_RGB/02_PNG/Spotify_Logo_RGB_White.png"
 import Backdrop from '../UI/Backdrop/Backdrop'
 import Spinner from '../../UI/Spinner/Spinner'
-import { useLoginActions, useUIDataActions, useUserDataActions } from '../../hooks/useActions'
+import { useLoginActions } from '../../hooks/useActions'
 import getParams from '../../helpers/getParams'
 import Main from '../Main/Main'
 import { loginUri } from '../../api'
-import { Button } from 'react-bootstrap'
+import { Button } from '@material-ui/core'
 
 // ELIMINAR
 import { useDispatch } from 'react-redux';
 import { testAction } from '../../state/action-creators/user-data-action-creators';
 
 const Layout: React.FC = () => {
-  const { isLoggedIn, accessToken } = useTypedSelector(state => state.login)
+  const { authCode, isLoggedIn,  } = useTypedSelector(state => state.login)
   const { loading } = useTypedSelector(state => state.ui)
-  const { userInputSelect } = useTypedSelector(state => state.userData)
+  const { error } = useTypedSelector(state => state.error)
 
   const { userAuthorized, authCodeObtained, getAccessToken } = useLoginActions()
-  const { toggleLoading } = useUIDataActions()
-  const { getUserTopData } = useUserDataActions()
 
-  const firstUpdate = useRef(true);
   
   // ELIMINAR
   const dispatch = useDispatch();
 
-  // TO CHECK *WHEN* THE CODE IS OBTAINED
   useEffect(() => {
-    const authCode = getParams(window.location.href).code
-    if (!authCode || accessToken) return
-    toggleLoading(true)
-    authCodeObtained(authCode)
+    const code = getParams(window.location.href).code
+    if (!code || code === authCode) return
+    authCodeObtained(code)
     getAccessToken()
     userAuthorized(true)
-  }, [accessToken])
+  }, [])
 
-  useEffect(() => {
-    if (!accessToken || !firstUpdate.current) return
-    firstUpdate.current = false;
-    getUserTopData(userInputSelect)
-  }, [accessToken])
 
   return (
-    <React.Fragment>
-      {isLoggedIn ?
- 
-      <main>
+    <main className={css.Container}>
+      <img
+        className={css.Logo}
+        src={logo}
+        alt="spotify-logo"
+        />
+      {isLoggedIn  ?
+      
+      <React.Fragment>
         <Backdrop show={loading}>
           <Spinner />
         </Backdrop>
-      
+        {error && 
+        <React.Fragment>
+          <p>{error}</p>
+          <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>
+        </React.Fragment>}
         <Main />
-      </main> :
+      </React.Fragment> :
+      <React.Fragment>
+        
+        <a className={css.Anchor} href={loginUri}>LOG IN WITH SPOTIFY</a>
+      </React.Fragment>}
 
-      <a className={css.Anchor} href={loginUri}>LOG IN WITH SPOTIFY</a>}
-      <Button onClick={() => dispatch(testAction())}>Jeje mira este llama a la saga</Button>
-    </React.Fragment>
+      {/* <button onClick={() => dispatch(testAction())}>Jeje mira este llama a la saga</button> */}
+    </main>
   )
 }
 

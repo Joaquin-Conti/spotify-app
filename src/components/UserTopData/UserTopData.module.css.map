@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAKA,AAAA,SAAS,CAAC;EACR,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;CAAG",
     "sources": [
         "UserTopData.module.sass"
     ],

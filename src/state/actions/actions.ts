@@ -1,8 +1,14 @@
+import { IUserAuthorizedPayload } from './../action-creators/login-action-creators';
 import { ActionType } from './../action-types/action-types';
 
 interface UserAuthorizedAction {
     type: ActionType.USER_AUTHORIZED
-    payload: boolean
+    payload: IUserAuthorizedPayload
+}
+
+interface UserProfileInfoObtainedAction {
+    type: ActionType.USER_PROFILE_INFO_OBTAINED
+    payload: any
 }
 
 interface AuthCodeObtainedAction {
@@ -38,4 +44,11 @@ interface ToggleLoadingAction {
     payload: boolean
 }
 
-export type Action = UserAuthorizedAction | AuthCodeObtainedAction | AccessTokenObtainedAction | RefreshTokenObtainedAction | UserTopDataObtainedAction | UserInputSelectedAction | ToggleLoadingAction
+interface ErrorAction {
+    type: ActionType.ERROR
+    payload: any
+}
+
+
+
+export type Action = UserAuthorizedAction | UserProfileInfoObtainedAction | AuthCodeObtainedAction | AccessTokenObtainedAction | RefreshTokenObtainedAction | UserTopDataObtainedAction | UserInputSelectedAction | ToggleLoadingAction | ErrorAction

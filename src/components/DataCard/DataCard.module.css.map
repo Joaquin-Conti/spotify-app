@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,SAAS,CAAC;EACR,WAAW,EAAE,GAAG;CAAG",
+    "sources": [
+        "DataCard.module.sass"
+    ],
+    "names": [],
+    "file": "DataCard.module.css"
+}
