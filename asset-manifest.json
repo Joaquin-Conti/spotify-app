@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/spotify-app/static/css/main.6f07df49.chunk.css",
-    "main.js": "/spotify-app/static/js/main.064401b4.chunk.js",
-    "main.js.map": "/spotify-app/static/js/main.064401b4.chunk.js.map",
+    "main.js": "/spotify-app/static/js/main.8c0949c7.chunk.js",
+    "main.js.map": "/spotify-app/static/js/main.8c0949c7.chunk.js.map",
     "runtime-main.js": "/spotify-app/static/js/runtime-main.9cad41c0.js",
     "runtime-main.js.map": "/spotify-app/static/js/runtime-main.9cad41c0.js.map",
     "static/css/2.fabbef47.chunk.css": "/spotify-app/static/css/2.fabbef47.chunk.css",
-    "static/js/2.030aea6b.chunk.js": "/spotify-app/static/js/2.030aea6b.chunk.js",
-    "static/js/2.030aea6b.chunk.js.map": "/spotify-app/static/js/2.030aea6b.chunk.js.map",
+    "static/js/2.c416b3b5.chunk.js": "/spotify-app/static/js/2.c416b3b5.chunk.js",
+    "static/js/2.c416b3b5.chunk.js.map": "/spotify-app/static/js/2.c416b3b5.chunk.js.map",
     "static/js/3.68a29e81.chunk.js": "/spotify-app/static/js/3.68a29e81.chunk.js",
     "static/js/3.68a29e81.chunk.js.map": "/spotify-app/static/js/3.68a29e81.chunk.js.map",
     "index.html": "/spotify-app/index.html",
     "static/css/2.fabbef47.chunk.css.map": "/spotify-app/static/css/2.fabbef47.chunk.css.map",
     "static/css/main.6f07df49.chunk.css.map": "/spotify-app/static/css/main.6f07df49.chunk.css.map",
-    "static/js/2.030aea6b.chunk.js.LICENSE.txt": "/spotify-app/static/js/2.030aea6b.chunk.js.LICENSE.txt",
+    "static/js/2.c416b3b5.chunk.js.LICENSE.txt": "/spotify-app/static/js/2.c416b3b5.chunk.js.LICENSE.txt",
     "static/media/Spotify_Logo_RGB_White.f48fb565.png": "/spotify-app/static/media/Spotify_Logo_RGB_White.f48fb565.png"
   },
   "entrypoints": [
     "static/js/runtime-main.9cad41c0.js",
     "static/css/2.fabbef47.chunk.css",
-    "static/js/2.030aea6b.chunk.js",
+    "static/js/2.c416b3b5.chunk.js",
     "static/css/main.6f07df49.chunk.css",
-    "static/js/main.064401b4.chunk.js"
+    "static/js/main.8c0949c7.chunk.js"
   ]
 }
