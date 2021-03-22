@@ -42,10 +42,10 @@ const Main: React.FC = () => {
       getUserProfileInfo()
     }
     getUserTopData(userInputSelect, expiresAt)
-  }, [refreshToken, accessToken, userInputSelect])
+  }, [userProfileInfo, refreshToken, accessToken, userInputSelect])
 
   return (
-    userTopData.length ? 
+    userTopData.length && userProfileInfo.display_name ? 
     <React.Fragment>
       
       {/* {showingModal &&
