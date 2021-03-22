@@ -13,6 +13,7 @@ export const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 export const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
 export const REDIRECT_URI = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : 'https://joaquinconti.github.io/spotify-app/'
 export const API_URL = 'https://api.spotify.com/v1'
+export const BASE_URL = process.env.NODE_ENV === 'development' ? '/' : '/spotify-app'
 
 // APP 
 export const CLIENT_ID = '790a84d7acf74bb19d1190baa107e089'

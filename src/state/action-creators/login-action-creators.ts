@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
-import { API_URL, axiosGetTopArtistsConfig, axiosTokenReqConfig, accessTokenReqData, refreshTokenReqData, TOKEN_ENDPOINT } from '../../api';
+import { API_URL, axiosGetTopArtistsConfig, axiosTokenReqConfig, accessTokenReqData, refreshTokenReqData, TOKEN_ENDPOINT, BASE_URL } from '../../api';
 import { ActionType } from '../action-types/action-types';
 import { Action } from '../actions/actions';
 
@@ -12,19 +12,27 @@ export interface IUserAuthorizedPayload {
 }
 
 export const userAuthorized = (isAuthorized: boolean) => {
-  let payload: IUserAuthorizedPayload = {
-    isLoggedIn: true
-  }
-  if (!isAuthorized) {
-    payload = {
-      isLoggedIn: false,
-      accessToken: '',
-      refreshToken: ''
+  return async (dispatch: Dispatch<Action>) => {
+
+    let payload: IUserAuthorizedPayload = {
+      isLoggedIn: true
     }
-  }
-  return {
-      type: ActionType.USER_AUTHORIZED,
-      payload: payload
+    if (!isAuthorized) {
+      dispatch({
+        type: ActionType.USER_LOGOUT,
+        payload: null
+      })
+      payload = {
+        isLoggedIn: false,
+        accessToken: '',
+        refreshToken: ''
+      }
+    }
+    localStorage.clear()
+    dispatch({
+        type: ActionType.USER_AUTHORIZED,
+        payload: payload
+    })
   }
 }
 
@@ -57,7 +65,7 @@ export const getAccessToken = () => {
       const { data } = await axios.post(TOKEN_ENDPOINT, accessTokenReqData ,axiosTokenReqConfig)
       data.expires_in = new Date()
       data.expires_in.setHours(data.expires_in.getHours() + 1);
-      window.history.pushState({}, '', "/")
+      window.history.pushState({}, '', BASE_URL)
       dispatch({
         type: ActionType.ACCESS_TOKEN_OBTAINED,
         payload: data

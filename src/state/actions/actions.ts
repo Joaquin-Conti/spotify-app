@@ -6,6 +6,11 @@ interface UserAuthorizedAction {
     payload: IUserAuthorizedPayload
 }
 
+interface UserLogoutAction {
+    type: ActionType.USER_LOGOUT
+    payload: any
+}
+
 interface UserProfileInfoObtainedAction {
     type: ActionType.USER_PROFILE_INFO_OBTAINED
     payload: any
@@ -51,4 +56,4 @@ interface ErrorAction {
 
 
 
-export type Action = UserAuthorizedAction | UserProfileInfoObtainedAction | AuthCodeObtainedAction | AccessTokenObtainedAction | RefreshTokenObtainedAction | UserTopDataObtainedAction | UserInputSelectedAction | ToggleLoadingAction | ErrorAction
+export type Action = UserAuthorizedAction | UserLogoutAction | UserProfileInfoObtainedAction | AuthCodeObtainedAction | AccessTokenObtainedAction | RefreshTokenObtainedAction | UserTopDataObtainedAction | UserInputSelectedAction | ToggleLoadingAction | ErrorAction

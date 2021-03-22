@@ -4,6 +4,14 @@ import { userDataReducer } from './userDataReducer';
 import { loginReducer } from "./loginReducer";
 import { errorReducer } from './errorReducer';
 
+// const rootReducer = (state, action) => {
+//   if (action.type === 'USER_LOGOUT') {
+//     state = undefined
+//   }
+
+//   return appReducer(state, action)
+// }
+
 export const rootReducer = combineReducers({
   login: loginReducer,
   userData: userDataReducer,
