@@ -16,8 +16,8 @@ export const API_URL = 'https://api.spotify.com/v1'
 export const BASE_URL = process.env.NODE_ENV === 'development' ? '/' : '/spotify-app'
 
 // APP 
-export const CLIENT_ID = '790a84d7acf74bb19d1190baa107e089'
-export const CLIENT_SECRET = '06abc79902244fc5b6428a26ed6df6e6'
+export const CLIENT_ID = 'f3a2db5e99624a8daad132d12e58301d' || '790a84d7acf74bb19d1190baa107e089'
+export const CLIENT_SECRET = '161be9ac95d54fd29d8c1596e17ee947' || '06abc79902244fc5b6428a26ed6df6e6'
 export const scopes = 'user-read-private user-read-email user-read-recently-played user-read-playback-state user-top-read user-modify-playback-state user-read-currently-playing'
 
 // LOGIN
