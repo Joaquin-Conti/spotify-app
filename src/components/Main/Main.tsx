@@ -10,10 +10,10 @@ const Main: React.FC = () => {
   const [showingModal, setShowingModal] = useState(false)
 
   const { userInputSelect, userTopData } = useTypedSelector(state => state.userData)
-  const { accessToken, userProfileInfo } = useTypedSelector(state => state.login)
+  const { accessToken, refreshToken, expiresAt, userProfileInfo } = useTypedSelector(state => state.login)
 
   const { getUserTopData, userInputSelected } = useUserDataActions()
-  const { getUserProfileInfo, userAuthorized } = useLoginActions()
+  const { getUserProfileInfo, userAuthorized, getRefreshToken } = useLoginActions()
 
   const { display_name, images } = userProfileInfo
 
@@ -31,12 +31,18 @@ const Main: React.FC = () => {
   //   })
   // }
 
+
   useEffect(() => {
-    console.log(userInputSelect.type)
     if (!accessToken) return
-    getUserProfileInfo()
-    getUserTopData(userInputSelect)
-  }, [accessToken, userInputSelect])
+    const now = new Date()
+    if (new Date(expiresAt).getTime() < now.getTime()) {
+      getRefreshToken(refreshToken)
+    }
+    if (!userProfileInfo.display_name) {
+      getUserProfileInfo()
+    }
+    getUserTopData(userInputSelect, expiresAt)
+  }, [refreshToken, accessToken, userInputSelect])
 
   return (
     userTopData.length ? 

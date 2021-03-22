@@ -9,26 +9,27 @@ interface UserInputSelect {
   timeTerm: string
 }
 
-export const getUserTopData = (userInputSelect: UserInputSelect) => { 
+export const getUserTopData = (userInputSelect: UserInputSelect, expiresIn: Date) => { 
   const { type, timeTerm } = userInputSelect
   return async (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.ERROR,
       payload: null
     })
-    console.log('[getUserTopData]', userInputSelect)
+    // console.log('[getUserTopData]', userInputSelect)
     dispatch({
       type: ActionType.TOGGLE_LOADING,
       payload: true
     })
+
     try {
       dispatch({
         type: ActionType.USER_TOP_DATA_OBTAINED,
         payload: []
       })
-      console.log("[getUserTopData] fetching")
+      // console.log("[getUserTopData] fetching")
       const { data } = await axios.get(`${API_URL}/me/top/${type}?time_range=${timeTerm}`, axiosGetTopArtistsConfig)
-      console.log('[ActionCreator]', data)
+      // console.log('[ActionCreator]', data)
       dispatch({
         type: ActionType.USER_TOP_DATA_OBTAINED,
         payload: data.items
@@ -38,6 +39,7 @@ export const getUserTopData = (userInputSelect: UserInputSelect) => {
         payload: false
       })
     } catch (error) {
+      localStorage.clear()
       dispatch({
         type: ActionType.TOGGLE_LOADING,
         payload: false
@@ -67,6 +69,7 @@ export const userInputSelected = (userInputSelect: UserInputSelect) => {
           payload: userInputSelect
         })
     } catch (error) {
+      localStorage.clear()
       console.log(error.response)
       dispatch({
         type: ActionType.ERROR,

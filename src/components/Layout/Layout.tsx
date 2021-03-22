@@ -13,9 +13,10 @@ import { Button } from '@material-ui/core'
 // ELIMINAR
 import { useDispatch } from 'react-redux';
 import { testAction } from '../../state/action-creators/user-data-action-creators';
+import Error from '../UI/Error/Error'
 
 const Layout: React.FC = () => {
-  const { authCode, isLoggedIn,  } = useTypedSelector(state => state.login)
+  const { authCode, isLoggedIn, accessToken  } = useTypedSelector(state => state.login)
   const { loading } = useTypedSelector(state => state.ui)
   const { error } = useTypedSelector(state => state.error)
 
@@ -30,7 +31,7 @@ const Layout: React.FC = () => {
     if (!code || code === authCode) return
     authCodeObtained(code)
     getAccessToken()
-    userAuthorized(true)
+    // userAuthorized(true)
   }, [])
 
 
@@ -40,18 +41,17 @@ const Layout: React.FC = () => {
         className={css.Logo}
         src={logo}
         alt="spotify-logo"
-        />
-      {isLoggedIn  ?
+      />
+
+      {error && <Error />}
+
+      {accessToken ?
       
       <React.Fragment>
         <Backdrop show={loading}>
           <Spinner />
         </Backdrop>
-        {error && 
-        <React.Fragment>
-          <p>{error}</p>
-          <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>
-        </React.Fragment>}
+        
         <Main />
       </React.Fragment> :
       <React.Fragment>

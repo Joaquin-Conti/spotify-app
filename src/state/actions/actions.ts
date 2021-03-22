@@ -18,7 +18,7 @@ interface AuthCodeObtainedAction {
 
 interface AccessTokenObtainedAction {
     type: ActionType.ACCESS_TOKEN_OBTAINED
-    payload: string
+    payload: any
 }
 
 interface RefreshTokenObtainedAction {

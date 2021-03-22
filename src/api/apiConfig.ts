@@ -4,13 +4,14 @@ import { store } from "../store"
 let state = store.getState();
 store.subscribe(() => {
     state = store.getState()
-    data.set('code', state.login.authCode)
+    accessTokenReqData.set('code', state.login.authCode)
+    refreshTokenReqData.set('refresh_token', state.login.refreshToken || '')
 })
 
 // ENDPOINTS
 export const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 export const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
-export const REDIRECT_URI = 'https://joaquinconti.github.io/spotify-app/'
+export const REDIRECT_URI = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : 'https://joaquinconti.github.io/spotify-app/'
 export const API_URL = 'https://api.spotify.com/v1'
 
 // APP 
@@ -28,7 +29,11 @@ export const loginUri = AUTH_ENDPOINT +
 export const base64EncodedIdAndSecret = btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)
 
 // DATA FOR POST REQUEST
-export const data = new URLSearchParams()
-    data.append('grant_type', 'authorization_code')
-    data.append('redirect_uri', REDIRECT_URI)
-    data.append('code', state.login.authCode)
+export const accessTokenReqData = new URLSearchParams()
+    accessTokenReqData.append('grant_type', 'authorization_code')
+    accessTokenReqData.append('redirect_uri', REDIRECT_URI)
+    accessTokenReqData.append('code', state.login.authCode)
+
+export const refreshTokenReqData = new URLSearchParams()
+    refreshTokenReqData.append('grant_type', 'refresh_token')
+    refreshTokenReqData.append('client_id', CLIENT_ID)
