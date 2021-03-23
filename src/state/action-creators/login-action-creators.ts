@@ -45,6 +45,10 @@ export const getUserProfileInfo = () => {
         payload: data
       })
     } catch (error) {
+      dispatch({
+        type: ActionType.ERROR,
+        payload: 'There was an error obtaining your profile.'
+      })
       console.log(error.response)
     }
   }

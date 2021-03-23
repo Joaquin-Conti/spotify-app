@@ -9,13 +9,11 @@ import css from './Main.module.css'
 const Main: React.FC = () => {
   const [showingModal, setShowingModal] = useState(false)
 
-  const { userInputSelect, userTopData } = useTypedSelector(state => state.userData)
-  const { accessToken, refreshToken, expiresAt, userProfileInfo } = useTypedSelector(state => state.login)
+  const { userInputSelect, userTopData, userProfileInfo } = useTypedSelector(state => state.userData)
+  const { accessToken, refreshToken, expiresAt } = useTypedSelector(state => state.login)
 
-  const { getUserTopData, userInputSelected } = useUserDataActions()
-  const { getUserProfileInfo, userAuthorized, getRefreshToken } = useLoginActions()
-
-  const { display_name, images } = userProfileInfo
+  const { getUserProfileInfo,getUserTopData, userInputSelected } = useUserDataActions()
+  const { userAuthorized, getRefreshToken } = useLoginActions()
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, inputChangedIs: string) => {
     userInputSelected({
@@ -24,28 +22,21 @@ const Main: React.FC = () => {
     })
   }
 
-  // const handleSelectChange = (e: React.ChangeEvent<{ name?: string | undefined; value: unknown; }>, inputChangedIs: string) => {
-  //   userInputSelected({
-  //     type: inputChangedIs === 'type' ? e.target.value : userInputSelect.type,
-  //     timeTerm: inputChangedIs === 'timeTerm' ? e.target.value : userInputSelect.timeTerm
-  //   })
-  // }
-
-
   useEffect(() => {
     if (!accessToken) return
     const now = new Date()
     if (new Date(expiresAt).getTime() < now.getTime()) {
       getRefreshToken(refreshToken)
     }
-    if (!userProfileInfo.display_name) {
+    console.log(userProfileInfo)
+    if (!userProfileInfo.images.length) {
       getUserProfileInfo()
     }
     getUserTopData(userInputSelect, expiresAt)
   }, [userProfileInfo, refreshToken, accessToken, userInputSelect])
 
   return (
-    userTopData.length && userProfileInfo.display_name ? 
+    userTopData.length && userProfileInfo.images.length ? 
     <React.Fragment>
       
       {/* {showingModal &&
@@ -56,8 +47,8 @@ const Main: React.FC = () => {
           <Button onClick={() => setShowingModal(false)}>No</Button>
         </Modal>} */}
 
-      <h4>{display_name}</h4>
-      <Avatar className={css.UserImage} src={images[0].url} alt={`${display_name} image`} />
+      <h4>{userProfileInfo.display_name}</h4>
+      <Avatar className={css.UserImage} src={userProfileInfo.images[0].url} alt={`${userProfileInfo.display_name} image`} />
       <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>
       <div className={css.GroupDiv}>
         <div>

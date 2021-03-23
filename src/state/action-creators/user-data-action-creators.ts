@@ -9,6 +9,24 @@ interface UserInputSelect {
   timeTerm: string
 }
 
+export const getUserProfileInfo = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    try {
+      const { data } = await axios.get(`${API_URL}/me`, axiosGetTopArtistsConfig)
+      dispatch({
+        type: ActionType.USER_PROFILE_INFO_OBTAINED,
+        payload: data
+      })
+    } catch (error) {
+      dispatch({
+        type: ActionType.ERROR,
+        payload: 'There was an error obtaining your profile.'
+      })
+      console.log(error.response)
+    }
+  }
+}
+
 export const getUserTopData = (userInputSelect: UserInputSelect, expiresIn: Date) => { 
   const { type, timeTerm } = userInputSelect
   return async (dispatch: Dispatch<Action>) => {

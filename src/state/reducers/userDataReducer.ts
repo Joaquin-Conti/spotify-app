@@ -3,6 +3,7 @@ import { ActionType } from './../action-types/action-types';
 
 interface UserDataState {
   userTopData: string[]
+  userProfileInfo: any
   userInputSelect: {
     type: string
     timeTerm: string
@@ -11,6 +12,10 @@ interface UserDataState {
 
 const initialState = {
   userTopData: [],
+  userProfileInfo: {
+    display_name: '',
+    images: []
+  },
   userInputSelect: {
     type: 'artists',
     timeTerm: 'long_term'
@@ -21,13 +26,18 @@ export const userDataReducer = (state: UserDataState = initialState, action: Act
   switch (action.type) {
     case (ActionType.USER_INPUT_SELECTED):
       return {
-          ...state,
-          userInputSelect: action.payload
+        ...state,
+        userInputSelect: action.payload
       }
     case (ActionType.USER_TOP_DATA_OBTAINED):
       return {
-          ...state,
-          userTopData: action.payload 
+        ...state,
+        userTopData: action.payload 
+      }
+    case (ActionType.USER_PROFILE_INFO_OBTAINED):
+      return {
+        ...state,
+        userProfileInfo: {...action.payload}
       }
     default:
       return state
