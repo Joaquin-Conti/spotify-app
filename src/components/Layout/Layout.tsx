@@ -3,7 +3,7 @@ import css from './Layout.module.css'
 import { useTypedSelector, } from '../../hooks/useTypedSelector'
 import logo from "../../assets/logos/01_RGB/02_PNG/Spotify_Logo_RGB_White.png"
 import Backdrop from '../UI/Backdrop/Backdrop'
-import Spinner from '../../UI/Spinner/Spinner'
+import Spinner from '../UI/Spinner/Spinner'
 import { useLoginActions } from '../../hooks/useActions'
 import getParams from '../../helpers/getParams'
 import Main from '../Main/Main'
