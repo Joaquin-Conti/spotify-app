@@ -13,7 +13,7 @@ const Error: React.FC = () => {
     <React.Fragment>
       <p>{error?.message}</p>
       {/* {error?.errorType === ErrorTypes.ERROR_AUTHENTICATION && <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>} */}
-      {accessToken && <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>}
+      {/* {accessToken && <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>} */}
     </React.Fragment>
   )
 }
