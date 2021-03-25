@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/spotify-app/static/css/main.39a2b364.chunk.css",
-    "main.js": "/spotify-app/static/js/main.fc349003.chunk.js",
-    "main.js.map": "/spotify-app/static/js/main.fc349003.chunk.js.map",
-    "runtime-main.js": "/spotify-app/static/js/runtime-main.9cad41c0.js",
-    "runtime-main.js.map": "/spotify-app/static/js/runtime-main.9cad41c0.js.map",
+    "main.css": "/spotify-app/static/css/main.81798246.chunk.css",
+    "main.js": "/spotify-app/static/js/main.fd360918.chunk.js",
+    "main.js.map": "/spotify-app/static/js/main.fd360918.chunk.js.map",
+    "runtime-main.js": "/spotify-app/static/js/runtime-main.793bc9d2.js",
+    "runtime-main.js.map": "/spotify-app/static/js/runtime-main.793bc9d2.js.map",
     "static/css/2.fabbef47.chunk.css": "/spotify-app/static/css/2.fabbef47.chunk.css",
-    "static/js/2.c416b3b5.chunk.js": "/spotify-app/static/js/2.c416b3b5.chunk.js",
-    "static/js/2.c416b3b5.chunk.js.map": "/spotify-app/static/js/2.c416b3b5.chunk.js.map",
-    "static/js/3.68a29e81.chunk.js": "/spotify-app/static/js/3.68a29e81.chunk.js",
-    "static/js/3.68a29e81.chunk.js.map": "/spotify-app/static/js/3.68a29e81.chunk.js.map",
+    "static/js/2.ee0cd7df.chunk.js": "/spotify-app/static/js/2.ee0cd7df.chunk.js",
+    "static/js/2.ee0cd7df.chunk.js.map": "/spotify-app/static/js/2.ee0cd7df.chunk.js.map",
+    "static/js/3.904a611c.chunk.js": "/spotify-app/static/js/3.904a611c.chunk.js",
+    "static/js/3.904a611c.chunk.js.map": "/spotify-app/static/js/3.904a611c.chunk.js.map",
     "index.html": "/spotify-app/index.html",
     "static/css/2.fabbef47.chunk.css.map": "/spotify-app/static/css/2.fabbef47.chunk.css.map",
-    "static/css/main.39a2b364.chunk.css.map": "/spotify-app/static/css/main.39a2b364.chunk.css.map",
-    "static/js/2.c416b3b5.chunk.js.LICENSE.txt": "/spotify-app/static/js/2.c416b3b5.chunk.js.LICENSE.txt",
+    "static/css/main.81798246.chunk.css.map": "/spotify-app/static/css/main.81798246.chunk.css.map",
+    "static/js/2.ee0cd7df.chunk.js.LICENSE.txt": "/spotify-app/static/js/2.ee0cd7df.chunk.js.LICENSE.txt",
     "static/media/Spotify_Logo_RGB_White.f48fb565.png": "/spotify-app/static/media/Spotify_Logo_RGB_White.f48fb565.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.9cad41c0.js",
+    "static/js/runtime-main.793bc9d2.js",
     "static/css/2.fabbef47.chunk.css",
-    "static/js/2.c416b3b5.chunk.js",
-    "static/css/main.39a2b364.chunk.css",
-    "static/js/main.fc349003.chunk.js"
+    "static/js/2.ee0cd7df.chunk.js",
+    "static/css/main.81798246.chunk.css",
+    "static/js/main.fd360918.chunk.js"
   ]
 }
