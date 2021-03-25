@@ -47,7 +47,7 @@ const Main: React.FC = () => {
     const now = new Date()
     const refreshTokenExpired = new Date(expiresAt).getTime() < now.getTime()
     if (refreshTokenExpired) getRefreshToken(refreshToken)
-    if (!userProfileInfo.id) getUserProfileInfo()
+    if (!Object.keys(userProfileInfo).length) getUserProfileInfo()
     if (!userTopData.length) getUserTopData(userInputSelect, expiresAt)
   }, [userProfileInfo, refreshToken, accessToken, userInputSelect])
 
