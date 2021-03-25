@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Action } from './../actions/actions';
 import { Dispatch } from 'redux';
 import { axiosGetTopArtistsConfig, API_URL } from '../../api/index';
-import { ActionType, constants } from './../action-types/action-types';
+import { ActionType, constants, ErrorTypes } from './../action-types/action-types';
 
 interface UserInputSelect {
   type: string
@@ -20,8 +20,10 @@ export const getUserProfileInfo = () => {
     } catch (error) {
       dispatch({
         type: ActionType.ERROR,
-        payload: 'There was an error obtaining your profile.'
-      })
+        payload: {
+          errorType: ErrorTypes.ERROR_USER_PROFILE_INFO,
+          message: 'There was an error obtaining your profile.'
+      }})
       console.log(error.response)
     }
   }
@@ -65,8 +67,10 @@ export const getUserTopData = (userInputSelect: UserInputSelect, expiresIn: Date
       console.log(error.response)
       dispatch({
         type: ActionType.ERROR,
-        payload: 'Something went wrong. Try re-logging in.'
-      })
+        payload: {
+          errorType: ErrorTypes.ERROR_USER_TOP_DATA,
+          message: "Something went wrong and we couldn't get your data. Please try re-logging in."
+      }})
     }
   }  
 }
@@ -91,8 +95,10 @@ export const userInputSelected = (userInputSelect: UserInputSelect) => {
       console.log(error.response)
       dispatch({
         type: ActionType.ERROR,
-        payload: 'Something went wrong. Try re-logging in.'
-      })
+        payload: {
+          errorType: ErrorTypes.ERROR_USER_TOP_DATA,
+          message: "Something went wrong and we couldn't get your data. Please try re-logging in."
+      }})
     }
   }
 } 

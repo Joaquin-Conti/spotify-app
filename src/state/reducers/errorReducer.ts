@@ -2,7 +2,10 @@ import { Action } from '../actions/actions';
 import { ActionType } from './../action-types/action-types';
 
 interface ErrorState {
-  error: any
+  error: {
+    errorType: string,
+    message: string
+  } | null
 }
 
 const initialState: ErrorState = {

@@ -1,13 +1,9 @@
 .UserImage {
-  height: 30% !important;
-  width: 30% !important;
   margin: 5% 0;
 }
 
 @media (min-width: 700px) {
   .UserImage {
-    height: 200px !important;
-    width: 200px !important;
     margin: 20px 0;
   }
 }

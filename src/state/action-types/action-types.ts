@@ -18,7 +18,12 @@ export enum ActionType {
 
   //ERRORS
   ERROR = 'ERROR',
+}
 
+export enum ErrorTypes {
+  ERROR_AUTHENTICATION = 'ERROR_AUTHENTICATION',
+  ERROR_USER_PROFILE_INFO = 'ERROR_USER_PROFILE_INFO',
+  ERROR_USER_TOP_DATA = 'ERROR_USER_TOP_DATA',
 }
 
 export const constants = {

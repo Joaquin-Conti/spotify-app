@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
-import { API_URL, axiosGetTopArtistsConfig, axiosTokenReqConfig, accessTokenReqData, refreshTokenReqData, TOKEN_ENDPOINT, BASE_URL } from '../../api';
-import { ActionType } from '../action-types/action-types';
+import { axiosTokenReqConfig, accessTokenReqData, refreshTokenReqData, TOKEN_ENDPOINT, BASE_URL } from '../../api';
+import { ActionType, ErrorTypes } from '../action-types/action-types';
 import { Action } from '../actions/actions';
 
 export interface IUserAuthorizedPayload {
@@ -59,8 +59,10 @@ export const getAccessToken = () => {
     } catch (err) {
       dispatch({
         type: ActionType.ERROR,
-        payload: 'There was an error authenticating, please try again.'
-      })
+        payload: {
+          errorType: ErrorTypes.ERROR_AUTHENTICATION,
+          message: 'There was an error authenticating, please refresh the page and try again.'
+      }})
       localStorage.clear()
       console.log(err.response)
     }
@@ -82,8 +84,10 @@ export const getRefreshToken = (refreshToken: string | undefined) => {
     } catch (err) {
       dispatch({
         type: ActionType.ERROR,
-        payload: 'There was an error authenticating, please try again.'
-      })
+        payload: {
+          errorType: ErrorTypes.ERROR_AUTHENTICATION,
+          message: 'There was an error authenticating, please refresh the page and try again.'
+      }})
       localStorage.clear()
       console.log(err.response)
     }

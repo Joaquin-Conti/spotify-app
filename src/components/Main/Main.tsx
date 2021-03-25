@@ -1,19 +1,39 @@
-import { Avatar, Button, InputLabel, MenuItem, Select } from '@material-ui/core'
+import { Avatar, Button } from '@material-ui/core'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react'
 import { useLoginActions, useUserDataActions } from '../../hooks/useActions'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { getInitials } from '../../utils/getInitials'
+import Error from '../UI/Error/Error';
 import Modal from '../UI/Modal/Modal'
 import UserTopData from '../UserTopData/UserTopData'
 import css from './Main.module.css'
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    small: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+    large: {
+      width: theme.spacing(15),
+      height: theme.spacing(15),
+    },
+  }),
+);
 
 const Main: React.FC = () => {
   const [showingModal, setShowingModal] = useState(false)
 
   const { userInputSelect, userTopData, userProfileInfo } = useTypedSelector(state => state.userData)
   const { accessToken, refreshToken, expiresAt } = useTypedSelector(state => state.login)
+  const { error } = useTypedSelector(state => state.error)
+
 
   const { getUserProfileInfo,getUserTopData, userInputSelected } = useUserDataActions()
   const { userAuthorized, getRefreshToken } = useLoginActions()
+
+  const classes = useStyles();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, inputChangedIs: string) => {
     userInputSelected({
@@ -25,18 +45,14 @@ const Main: React.FC = () => {
   useEffect(() => {
     if (!accessToken) return
     const now = new Date()
-    if (new Date(expiresAt).getTime() < now.getTime()) {
-      getRefreshToken(refreshToken)
-    }
-    console.log(userProfileInfo)
-    if (!userProfileInfo.images.length) {
-      getUserProfileInfo()
-    }
-    getUserTopData(userInputSelect, expiresAt)
+    const refreshTokenExpired = new Date(expiresAt).getTime() < now.getTime()
+    if (refreshTokenExpired) getRefreshToken(refreshToken)
+    if (!userProfileInfo.id) getUserProfileInfo()
+    if (!userTopData.length) getUserTopData(userInputSelect, expiresAt)
   }, [userProfileInfo, refreshToken, accessToken, userInputSelect])
 
   return (
-    userTopData.length && userProfileInfo.images.length ? 
+    userTopData.length ? 
     <React.Fragment>
       
       {/* {showingModal &&
@@ -46,20 +62,32 @@ const Main: React.FC = () => {
           <Button onClick={() => userAuthorized(false)}>Yes</Button> 
           <Button onClick={() => setShowingModal(false)}>No</Button>
         </Modal>} */}
-
-      <h4>{userProfileInfo.display_name}</h4>
-      <Avatar className={css.UserImage} src={userProfileInfo.images[0].url} alt={`${userProfileInfo.display_name} image`} />
+      {userProfileInfo.id && 
+      <React.Fragment>
+        <h4>{userProfileInfo.display_name}</h4>
+        {userProfileInfo.images.length ?
+        <Avatar
+          className={`${css.UserImage} ${classes.large}`}
+          src={userProfileInfo.images[0].url} 
+          alt={`${userProfileInfo.display_name} image`}
+        />
+        :
+        <Avatar
+          className={`${css.UserImage} ${classes.small}`}
+        >{getInitials(userProfileInfo.display_name)}</Avatar>}
+      </React.Fragment>}
+      {error && <Error />}
       <Button variant="contained" onClick={() => userAuthorized(false)}>Log Out</Button>
       <div className={css.GroupDiv}>
         <div>
-          <label htmlFor="typeSelect" >Get your top: </label>
+          <label htmlFor="type" >Get your top: </label>
           <select value={userInputSelect.type} className={css.Select} name="type" onChange={(e) => handleChange(e, e.target.name)}>
               <option value="artists">Artists</option>
               <option value="tracks">Tracks</option>
           </select>
         </div>
         <div>
-          <label htmlFor="timeTermSelect" >From: </label>
+          <label htmlFor="timeTerm" >From: </label>
           <select value={userInputSelect.timeTerm} className={css.Select} name="timeTerm" onChange={(e) => handleChange(e, e.target.name)}>
               <option value="short_term">This month</option>
               <option value="medium_term">6 months</option>
