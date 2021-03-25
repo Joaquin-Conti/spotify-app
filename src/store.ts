@@ -10,9 +10,9 @@ const sagaMiddleware = createSagaMiddleware()
 const saveToLocalStorage = (state: any) => {
   try {
     const serializedState = JSON.stringify(state)
-    if (localStorage.getItem("app-version") !== '7') {
+    if (localStorage.getItem("app-version") !== '8') {
       localStorage.clear();
-      localStorage.setItem("app-version", "7");
+      localStorage.setItem("app-version", "8");
     }
     localStorage.setItem('state', serializedState)
   } catch (err) {
