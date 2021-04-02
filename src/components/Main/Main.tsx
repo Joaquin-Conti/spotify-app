@@ -52,9 +52,8 @@ const Main: React.FC = () => {
   }, [userProfileInfo, refreshToken, accessToken, userInputSelect])
 
   return (
-    userTopData.length ? 
+    userTopData.length ?
     <React.Fragment>
-      
       {/* {showingModal &&
         <Modal>
           <h3>Are you sure you want to log out?</h3>

@@ -12,10 +12,7 @@ interface UserDataState {
 
 const initialState = {
   userTopData: [],
-  userProfileInfo: {
-    display_name: '',
-    images: []
-  },
+  userProfileInfo: {},
   userInputSelect: {
     type: 'artists',
     timeTerm: 'long_term'
